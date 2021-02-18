@@ -3,7 +3,7 @@
     {
       "name": "newBankAddress",
       "type": "Address",
-      "value": "FGXe86WvPeLNsqVJcSJ4UknSS6T1bCgu1K3hN5noiUnBN5FjZCp859cq1j6yzHP73WYHUzz6buv6asg3yfFwRpkpAqpoWG18GFpHQnYkb3SDUvzZMitvJsSdLUkcaH89qcLVq6APVS4ReDdLqFX5rFGXovukciyroY89NNh7BRRwk16fiZVMSYh7coFkjvxazRsqw2w4zJZX28z13dNf8WFCvdEwSdsurHZe4T2GgihNXYR9KRwybyDUMCGCGUFtJPaKKKKCCavYnCxRMdF3UNGwARj4RfwPoiQhdU2xK4wst3neFqQiRRpahrCtPeGVfjdRJozowqrw8mZf8nkgsMy3TNc4FaZELmewBvxMMDTfgaJ6X34qQLFjL6jkzsyxyGWPEgUXVVkXs1U4vG44XWVZozPiXqZNticBajdoQG1w6CzMxaMPAoHpaREGK8Xz2BhrfTVWkbsKyT12szR7UXMjZQTuhBkLSBaR6strFDLSAJrwBQTdXPbcLXFVvE8gsbivDZ6qHX6ZB6yk9QrvtEksMYRRTd4G9rSWkBZDwsuPZNWqCsBLVQU694ZtXcRmNeFLPkgny9mhztARoWi8XqQ4dKrzAk3HuVBSYNYBTB6C5aHt6W3KjiVNbS4W7TenL1jcbqiFB8fa1Df5Vo72tBiorqwGZXZZTsrWNsCkiy1Bx8J2HtuC22PTrgC8WUPegVMJcoVE3rn3kwjjtEaH3VsTowT93Zh4UJRMqzRj2hfWvAPzshLZ8Uv1PrHgZHgK5PYJUZNYgtj2dCNWfaomjUb787vgyvtGRntZCjgD2NKqW89tTSHFRkDpTDm6TQDvKcudjCNW7BDBCdkgzFkke6qTSrGGjArsBBFJ4pqNmMW3wf9M7TnNx48ortzP8HjxMEeYdcFc3BWxkHPqBzJ8tamJokpz7YuYvf4W"
+      "value": "29irJ65SHH5VxgQaXubC1z9eHzutUWV6BB2QGCbA9eQ53msbyzXdh6bSXm64WMwkiBNRgeXZy1ySSvVuKtEE4ifUbdXiV4PtdqsdxWxrhmJoqnDHSimsCz2zLsUGFm9XybyQ3QdV9jmhdFfM1PAWN3sLSj9uPqdAEtrPLYuCuFXYvW73mXDUGTYwebgG4HUPTbsr3B9Pp95HXQ7H6mb8yN5oqfjLk8fJhmKmq4o3fhirnpipht9ceon4mAzD9u8gkQUsEThRqRqZPB4tomoBmFY2rxe6KQPbtc9aS3VC6A8hnvRWnBWsnKCz6rpW3frg6jdB2pygJDPMubqpn9zy4iu6wDtB7YyTXDFkUShr5gsT4Q3v7ht7xzhykXLdaJitDhFockmfkQPWnyYUg7xtZAAj2rMTRHVXdXKvkVXMoFBSC9dX57aqe2Y3yLkP8jxxf8oSo98PFA5zRuZhQYgFmH6kSFGruuxLAw8FJYC4ffyzB3VRSsjzSQ85FkZwshC29CnF6Lwxj4Rq4cr9UKbsRJdYxKVKjuUBp28AgqEDNEqm3Lk22xo44pY7Jn3QhXS3CLtwqi2woDHAVXv8rjYsmWh5tnD1e52tFoA1YyXoEn3T2sZVGzvcZWJ4Y2Hb2jSH91NXHRjmM4zAcXiA24mGmXBL34PHzpnFKAoSe5yavYbW879wDdefeeX42ZVETsQHe7iHHw8T2BytSG5v5xdo1yxzaxwZP92E3p4M1Em2LDQDMr8zfWdEzJNrSiDY7MngqHa3Ds1NPNSL4xeo4ni7Ejy7LMFAdzugJDiNhqo35cKTqB7k31gbJ7Tab1w9aVcbQAQf1e3KPEEHG4Go797MN8s5oHGkTDkzVqSz5me3SUnoany1V3XXzNcApxuJMNxZosYgFJAR2huTSUcQPpCWp3ucbFTQQNcC1M3RXTctN1pnkCNpvjhoGBTtncsHSqcmtb31eQp2bX1JcGCRXSvcav6B5BqYw5jQ2WAX6Gu3xYLwS"
     },
     {
       "name": "numVotes",
@@ -65,8 +65,7 @@
             "value": "ballotToken"
           },
           "amount": {
-            "value": "numVotes",
-            "filter": "Ge"
+            "value": "numVotes"
           }
         }
       ]
@@ -112,12 +111,12 @@
       "from": "newBankErgoTreeBytes"
     },
     {
-      "to": "newBankErgoTree",
+      "name": "newBankErgoTree",
       "from": "newBankAddress",
       "op": "ToErgoTree"
     },
     {
-      "to": "newBankErgoTreeBytes",
+      "name": "newBankErgoTreeBytes",
       "from": "newBankErgoTree",
       "op": "ToCollByte"
     }
