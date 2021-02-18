@@ -1,0 +1,354 @@
+{
+  "constants": [
+    {
+      "name": "scToken",
+      "type": "CollByte",
+      "value": "a908bf2be7e199014b45e421dc4adb846d8de95e37da87c7f97ac6fb8e863fa2"
+    },
+    {
+      "name": "rcToken",
+      "type": "CollByte",
+      "value": "b240daba6b5f9f9b6d4e6d7fc8b7c0423f1dfa28a883ec626a18b69be6c7590e"
+    },
+    {
+      "name": "oraclePoolNFT",
+      "type": "CollByte",
+      "value": "0fb1eca4646950743bc5a8c341c16871a0ad9b4077e3b276bf93855d51a042d1"
+    },
+    {
+      "name": "bankNFT",
+      "type": "CollByte",
+      "value": "7bd873b8a886daa7a8bfacdad11d36aeee36c248aaf5779bcd8d41a13e4c1604"
+    },
+    {
+      "name": "poolAddresses",
+      "type": "Address",
+      "values": [
+        "8D6pdYVRvF6PcDZZ8HXaEv1VyWmYC8VV5mfmuVPCBHLCzzjWUu6vvrpJvN8uT7rJMKzJbGmVcaDJirPFeuTV1jgk3E1sF8KYKaQjvohyXfPsZhCqhsQ8oh5c3EKbmC4DeMBBxaEzUZZFmvFwpsoGMJvhwQKpwuEQZruTwdzjUxwfFMKyNtTBbAr3Pmz6NeB5ewyj2bSFcfN791G2jKB3VENA7pncaX3bPhL6aEDJstFBELa9a7uTeevA1sjcUwTyUDfShwyM2hE1RxRrCFMfiuzcR3nJYVLEsn3Y1ge6ThjQg8H3xFpXsJ6SfXtFhX2PdnhyjMD9mtkCjM6icsqNp12R7J58HenC1fv8KpuBU7GEmQAHEFr28Gr8GKafhiTsXzjtqbiV9b78A4wtWUBgbEPfrKhV1eB3fVKPQ73Gw8xwxTLBbXLKyVHT9kcrnUPQBGij4H1oaeNz2cr7eMdwiP2aA4XjUHDnct7ZiHn243UnqP7gveBGf1fcZMYNkjiXhFCRsjMhBQtjE9gtBMNoTJd3Y9tdjYn1YcHWbKQLvj27eD4XXpSSEXodBFuhM",
+	"2DSWBK78v9sqbTLKupuf7tmXwVdNr6jPZPjxvaNxgCRkYMPvWagyAu8qo3Uq8Df1AdWK12B88MFEnd71bFiAA1y9hycNziw99PgyaaLiWhdHUDfTziUoZTLbQWTEnaAeqcwzodotewJxQpGEW4Hx5DBkqQgrYvSvXGqHdhZHLztee3Sa8SMKEsRuTEhrR6jCYvQbwYfLG7sPfXoBGWfARLwmjSm2UkzJTYXwNEvqmr89KAVn3U3UFsxbabLoe56oddeRfpNSMJvuzf8UzjiYt7ir2uBPAJMm8qRxtxAu2Ka6XdFTUtbyE7NEeLtXFvkv2RoorZfzMNkDixt5PHNM8WZiq2j1kcsAtcR5ctzB8bw62ATkR6JVa97D6GHTM7XZTgY5X4dnEuTg4PWm"
+      ]
+    },
+    {
+      "name": "bankAddress",
+      "type": "Address",
+      "value": "3cVqWME2PB1k1PDMKWVUKz47zVJwyipr7qnTAzpwp9xZbn5Qv583aa6B2VeWe5Pj5y2gfGfi2EcA9UaJJxmp3doxoxSG83AjX6oU4CCiBxoYAR9UytzFk38b9AP4BLp24AZbjK2xXd7Fg4MVqJE3BnRS6aGWnYS3cnFV8mSGEM4fKkVbuBArCUGKmWD4PS73EaKNBaGEf7zWDg8o5gkazRtxpMy8sDsMw2tz7WByz7vBtxhuEsuXHenRtdNBYUKmUm1KZaE1FzQsPndQM29opVUoYXDPS7RDsqe395mxxNp8j2vnHYDdtiJWzh9iTPiqZC4PiQypsNbkuSb94Y7ZfohisuhvM5FojmmvkJrLJcoJVodiv8BELmr5wpPD3RRdtCopFsnUoftXSyTjRa9JtNALERet11pM2buY5QMR7sf9xH8VxhgPLHL2tkxPMvLEVjNS82CdZTwSiVQZ8HwbVTAY9mxZYpy2TXFdxc2cSNYzSLPJiEAivqneWoydhEbZNviH155AzmUURbN1nydDzqA8vPzDKvNyacBpH1WJhTZqkDi2JqyScqsAaDc2o6eAGXTtjfZENhPjPfbATDqLvckF9jybzo7Vo2WFH5Fi7KjKBNhnRttAojNBXpE7aZVK3wM2gt5kgPiD9iGWAhnvw4RVnMYi4ZRWszED1e556xhYwgAt6PVprfK5qfb2AbELEEP8xbjgXDRHkqVmeZczGKdqUw7pfzR2Nd2GWJgCCp9wZ3vQtYETdaGQGq2HrASAtnPb4XsqRdXR8qW9kPBepqB8bhvz3hjVm4HrX528LYKJeinAXzL8QQHntraVBgH3d4dE1fz56bvRQVTBzbcLYhy1ZrzwgJdVx13EPNYQNrzoGPdjA1X1qtGMoB6zyHdoiG2BY8D3jZYtjzmJkxvY3C1Wx1HkgDAz5iUwvMLRci3LGNLdfbwkEavVWnzHX"
+    },
+    {
+      "name": "liveEpochAddress",
+      "type": "Address",
+      "value": "8D6pdYVRvF6PcDZZ8HXaEv1VyWmYC8VV5mfmuVPCBHLCzzjWUu6vvrpJvN8uT7rJMKzJbGmVcaDJirPFeuTV1jgk3E1sF8KYKaQjvohyXfPsZhCqhsQ8oh5c3EKbmC4DeMBBxaEzUZZFmvFwpsoGMJvhwQKpwuEQZruTwdzjUxwfFMKyNtTBbAr3Pmz6NeB5ewyj2bSFcfN791G2jKB3VENA7pncaX3bPhL6aEDJstFBELa9a7uTeevA1sjcUwTyUDfShwyM2hE1RxRrCFMfiuzcR3nJYVLEsn3Y1ge6ThjQg8H3xFpXsJ6SfXtFhX2PdnhyjMD9mtkCjM6icsqNp12R7J58HenC1fv8KpuBU7GEmQAHEFr28Gr8GKafhiTsXzjtqbiV9b78A4wtWUBgbEPfrKhV1eB3fVKPQ73Gw8xwxTLBbXLKyVHT9kcrnUPQBGij4H1oaeNz2cr7eMdwiP2aA4XjUHDnct7ZiHn243UnqP7gveBGf1fcZMYNkjiXhFCRsjMhBQtjE9gtBMNoTJd3Y9tdjYn1YcHWbKQLvj27eD4XXpSSEXodBFuhM"
+    },
+    {
+      "name": "epochPrepAddress",
+      "type": "Address",
+      "value": "2DSWBK78v9sqbTLKupuf7tmXwVdNr6jPZPjxvaNxgCRkYMPvWagyAu8qo3Uq8Df1AdWK12B88MFEnd71bFiAA1y9hycNziw99PgyaaLiWhdHUDfTziUoZTLbQWTEnaAeqcwzodotewJxQpGEW4Hx5DBkqQgrYvSvXGqHdhZHLztee3Sa8SMKEsRuTEhrR6jCYvQbwYfLG7sPfXoBGWfARLwmjSm2UkzJTYXwNEvqmr89KAVn3U3UFsxbabLoe56oddeRfpNSMJvuzf8UzjiYt7ir2uBPAJMm8qRxtxAu2Ka6XdFTUtbyE7NEeLtXFvkv2RoorZfzMNkDixt5PHNM8WZiq2j1kcsAtcR5ctzB8bw62ATkR6JVa97D6GHTM7XZTgY5X4dnEuTg4PWm"
+    },
+    {
+      "name": "myAddress",
+      "type": "Address",
+      "value": "9fcrXXaJgrGKC8iu98Y2spstDDxNccXSR9QjbfTvtuv7vJ3NQLk"
+    },
+    {
+      "name": "rcCircDelta",
+      "type": "Long",
+      "value": "5"
+    },
+    {
+      "name": "0",
+      "type": "Long",
+      "value": "0"
+    },
+    {
+      "name": "1",
+      "type": "Long",
+      "value": "1"
+    },
+    {
+      "name": "feePercent",
+      "type": "Long",
+      "value": "1"
+    },
+    {
+      "name": "100",
+      "type": "Long",
+      "value": "100"
+    },
+    {
+      "name": "minStorageRent",
+      "type": "Long",
+      "value": "10000000"
+    },
+    {
+      "name": "rcDefaultPrice",
+      "type": "Long",
+      "value": "1000000"
+    }
+  ],
+  "dataInputs": [
+    {
+      "address": {
+        "value": "poolAddresses"
+      },
+      "registers": [
+        {
+          "num": "R4",
+          "name": "rateUSD",
+          "type": "Long"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "address": {
+        "value": "bankAddress"
+      },
+      "tokens": [
+        {
+          "index": 0,
+          "id": {
+            "value": "scToken"
+          },
+          "amount": {
+            "name": "scTokenIn"
+          }
+        },
+        {
+          "index": 1,
+          "id": {
+            "value": "rcToken"
+          },
+          "amount": {
+            "name": "rcTokenIn",
+            "filter": "Gt",
+            "value": "rcCircDelta"
+          }
+        },
+        {
+          "index": 2,
+          "id": {
+            "value": "bankNFT"
+          },
+          "amount": {
+            "value": "1"
+          }
+        }
+      ],
+      "registers": [
+        {
+          "num": "R4",
+          "name": "scCircIn",
+          "type": "Long"
+        },
+        {
+          "num": "R5",
+          "name": "rcCircIn",
+          "type": "Long"
+        }
+      ],
+      "nanoErgs": {
+        "name": "bcReserveIn"
+      },
+      "options": [
+        "Strict"
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "address": {
+        "value": "bankAddress"
+      },
+      "tokens": [
+        {
+          "index": 0,
+          "id": {
+            "value": "scToken"
+          },
+          "amount": {
+            "value": "scTokenIn"
+          }
+        },
+        {
+          "index": 1,
+          "id": {
+            "value": "rcToken"
+          },
+          "amount": {
+            "value": "rcTokenOut"
+          }
+        },
+        {
+          "index": 2,
+          "id": {
+            "value": "bankNFT"
+          },
+          "amount": {
+            "value": "1"
+          }
+        }
+      ],
+      "registers": [
+        {
+          "num": "R4",
+          "value": "scCircIn",
+          "type": "Long"
+        },
+        {
+          "num": "R5",
+          "value": "rcCircOut",
+          "type": "Long"
+        }
+      ],
+      "nanoErgs": {
+        "value": "bcReserveOut"
+      }
+    },
+    {
+      "address": {
+        "value": "myAddress"
+      },
+      "registers": [
+        {
+          "value": "rcCircDelta",
+          "num": "R4",
+          "type": "Long"
+        },
+        {
+          "value": "bcDeltaWithFee",
+          "num": "R5",
+          "type": "Long"
+        }
+      ],
+      "tokens": [
+        {
+          "index": 0,
+          "id": {
+            "value": "rcToken"
+          },
+          "amount": {
+            "value": "rcCircDelta"
+          }
+        }
+      ],
+      "nanoErgs": {
+        "value": "minStorageRent"
+      }
+    }
+  ],
+  "unaryOps": [
+    {
+      "name": "fee * -1",
+      "op": "Neg",
+      "from": "fee"
+    }
+  ],
+  "branches": [
+    {
+      "name": "equityRate",
+      "ifTrue": "rcDefaultPrice",
+      "ifFalse": "equityIn / rcCircIn",
+      "condition": {
+        "first": "rcCircIn",
+        "second": "0",
+        "op": "Eq"
+      }
+    },
+    {
+      "name": "rcNominalPrice",
+      "ifTrue": "rcDefaultPrice",
+      "ifFalse": "equityRate",
+      "condition": {
+        "first": "equityIn",
+        "second": "0",
+        "op": "Eq"
+      }
+    },
+    {
+      "name": "actualFee",
+      "ifTrue": "fee * -1",
+      "ifFalse": "fee",
+      "condition": {
+        "first": "fee",
+        "second": "0",
+        "op": "Lt"
+      }
+    }
+
+  ],
+  "binaryOps": [
+    {
+      "name": "rcTokenOut",
+      "first": "rcTokenIn",
+      "op": "Sub",
+      "second": "rcCircDelta"
+    },
+    {
+      "name": "rcCircOut",
+      "first": "rcCircIn",
+      "op": "Add",
+      "second": "rcCircDelta"
+    },
+    {
+      "name": "rate",
+      "first": "rateUSD",
+      "op": "Div",
+      "second": "100"
+    },
+    {
+      "name": "bcReserveNeededIn",
+      "first": "rate",
+      "op": "Mul",
+      "second": "scCircIn"
+    },
+    {
+      "name": "liabilitiesIn",
+      "first": "bcReserveIn",
+      "op": "Min",
+      "second": "bcReserveNeededIn"
+    },
+    {
+      "name": "equityIn",
+      "first": "bcReserveIn",
+      "op": "Sub",
+      "second": "liabilitiesIn"
+    },
+    {
+      "name": "equityIn / rcCircIn",
+      "first": "equityIn",
+      "op": "Div",
+      "second": "rcCircIn"
+    },
+    {
+      "name": "bcDelta",
+      "first": "rcNominalPrice",
+      "op": "Mul",
+      "second": "rcCircDelta"
+    },
+    {
+      "name": "bcDelta * feePercent",
+      "first": "bcDelta",
+      "op": "Mul",
+      "second": "feePercent"
+    },
+    {
+      "name": "fee",
+      "first": "bcDelta * feePercent",
+      "op": "Div",
+      "second": "100"
+    },
+    {
+      "name": "bcDeltaWithFee",
+      "first": "bcDelta",
+      "op": "Add",
+      "second": "actualFee"
+    },
+    {
+      "name": "bcReserveOut",
+      "first": "bcReserveIn",
+      "op": "Add",
+      "second": "bcDeltaWithFee"
+    }
+  ],
+  "fee": 2000000
+}

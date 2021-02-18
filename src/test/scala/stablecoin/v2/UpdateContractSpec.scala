@@ -1,0 +1,13 @@
+package stablecoin.v2
+
+import org.scalatest.PropSpec
+import stablecoin.v2.UpdateContract.address
+
+class UpdateContractSpec extends PropSpec {
+
+  property("Update Address check") {
+    println("UpdateAddress: " + address)
+    assert(
+      address == "6Vs43fLottAzin3EiEiswbSD31ETscqBLy9i3zTWCwUVuG79fWuP7S3Kko5PEK56UEBWSTE8GuuXq3ZYzWKCGmzPQ9y5AU4hvwGcTsYPH74qLsm3kmXctHLRnEVAxvsviB5aTRJo41adKHZ4EJSdWJpNUuJM4BJXGpM7BJnjT9cNB63QMtMUrfqaq8Ku8aJ7jM1VtXZFQiNH1pzwNFRQzU4fD4Dg8VqTtaAVWw98zKgGZmm35pq8QbAb5je796CWnQQRzDuGdPxwfBzzVCPjCf5hpFev56odduByacWPGYnd671A7CLrF7iSqae2ZHs4YmeXvAbBUW6s3A7U8YZAdPvaugBjNEkP9eVYZjDR4ppWcGukcrnjWBSqcv9nrBMudcLQLZwS653mVCbD8rqki2u2DjR4PMMtSQLAnH4HkeZFnz3w8Nav7YXkgviAFYR5AEdse8sUUKmb34AhU2uCxCJw6thqRfcMsWwaRHetzkhp6YoAy66EXmpVgM7pDo9RxpE9aRwPbxY6BwZ8")
+  }
+}

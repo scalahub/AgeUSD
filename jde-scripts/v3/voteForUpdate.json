@@ -1,0 +1,126 @@
+{
+  "constants": [
+    {
+      "name": "newBankAddress",
+      "type": "Address",
+      "value": "FGXe86WvPeLNsqVJcSJ4UknSS6T1bCgu1K3hN5noiUnBN5FjZCp859cq1j6yzHP73WYHUzz6buv6asg3yfFwRpkpAqpoWG18GFpHQnYkb3SDUvzZMitvJsSdLUkcaH89qcLVq6APVS4ReDdLqFX5rFGXovukciyroY89NNh7BRRwk16fiZVMSYh7coFkjvxazRsqw2w4zJZX28z13dNf8WFCvdEwSdsurHZe4T2GgihNXYR9KRwybyDUMCGCGUFtJPaKKKKCCavYnCxRMdF3UNGwARj4RfwPoiQhdU2xK4wst3neFqQiRRpahrCtPeGVfjdRJozowqrw8mZf8nkgsMy3TNc4FaZELmewBvxMMDTfgaJ6X34qQLFjL6jkzsyxyGWPEgUXVVkXs1U4vG44XWVZozPiXqZNticBajdoQG1w6CzMxaMPAoHpaREGK8Xz2BhrfTVWkbsKyT12szR7UXMjZQTuhBkLSBaR6strFDLSAJrwBQTdXPbcLXFVvE8gsbivDZ6qHX6ZB6yk9QrvtEksMYRRTd4G9rSWkBZDwsuPZNWqCsBLVQU694ZtXcRmNeFLPkgny9mhztARoWi8XqQ4dKrzAk3HuVBSYNYBTB6C5aHt6W3KjiVNbS4W7TenL1jcbqiFB8fa1Df5Vo72tBiorqwGZXZZTsrWNsCkiy1Bx8J2HtuC22PTrgC8WUPegVMJcoVE3rn3kwjjtEaH3VsTowT93Zh4UJRMqzRj2hfWvAPzshLZ8Uv1PrHgZHgK5PYJUZNYgtj2dCNWfaomjUb787vgyvtGRntZCjgD2NKqW89tTSHFRkDpTDm6TQDvKcudjCNW7BDBCdkgzFkke6qTSrGGjArsBBFJ4pqNmMW3wf9M7TnNx48ortzP8HjxMEeYdcFc3BWxkHPqBzJ8tamJokpz7YuYvf4W"
+    },
+    {
+      "name": "numVotes",
+      "type": "Long",
+      "value": "5"
+    },
+    {
+      "name": "ballotToken",
+      "type": "CollByte",
+      "value": "dd26438230986cfe7305ad958451b69e55ad5ac37c8a355bfb08d810edd7a20f"
+    },
+    {
+      "name": "myAddress",
+      "type": "Address",
+      "value": "9hz1B19M44TNpmVe8MS4xvXyycehh5uP5aCfj4a6iAowj88hkd2"
+    },
+    {
+      "name": "minStorageRent",
+      "type": "Long",
+      "value": "1000000"
+    },
+    {
+      "name": "updateNFT",
+      "type": "CollByte",
+      "value": "77d14a018507949d1a88a631f76663e8e5101f57305dd5ebd319a41028d80456"
+    },
+    {
+      "name": "updateAddress",
+      "type": "Address",
+      "value": "6Vs43fLottAzin3EiEiswbSD31ETscqBLy9i3zTWCwUVuG79fWuP7S3Kko5PEK56UEBWSTE8GuuXq3ZYzWKCGmzPQ9y5AU4hvwGcTsYPH74qLsm3kmXctHLRnEVAxvsviB5aTRJo41adKHZ4EJSdWJpNUuJM4BJXGpM7BJnjT9cNB63QMtMUrfqaq8Ku8aJ7jM1VtXZFQiNH1pzwNFRQzU4fD4Dg8VqTtaAVWw98zKgGZmm35pq8QbAb5je796CWnQQRzDuGdPxwfBzzVCPjCf5hpFev56odduByacWPGYnd671A7CLrF7iSqae2ZHs4YmeXvAbBUW6s3A7U8YZAdPvaugBjNEkP9eVYZjDR4ppWcGukcrnjWBSqcv9nrBMudcLQLZwS653mVCbD8rqki2u2DjR4PMMtSQLAnH4HkeZFnz3w8Nav7YXkgviAFYR5AEdse8sUUKmb34AhU2uCxCJw6thqRfcMsWwaRHetzkhp6YoAy66EXmpVgM7pDo9RxpE9aRwPbxY6BwZ8"
+    }
+  ],
+  "dataInputs": [
+    {
+      "id": {
+        "name": "updateBoxId"
+      },
+      "address": {
+        "value": "updateAddress"
+      },
+      "tokens": [
+        {
+          "index": 0,
+          "id": {
+            "value": "updateNFT"
+          }
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "address": {
+        "value": "myAddress"
+      },
+      "tokens": [
+        {
+          "id": {
+            "value": "ballotToken"
+          },
+          "amount": {
+            "value": "numVotes",
+            "filter": "Ge"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "address": {
+        "value": "myAddress"
+      },
+      "tokens": [
+        {
+          "index": 0,
+          "id": {
+            "value": "ballotToken"
+          },
+          "amount": {
+            "value": "numVotes"
+          }
+        }
+      ],
+      "registers": [
+        {
+          "num": "R4",
+          "value": "newBankErgoTreeHash",
+          "type": "CollByte"
+        },
+        {
+          "num": "R5",
+          "value": "updateBoxId",
+          "type": "CollByte"
+        }
+      ],
+      "nanoErgs": {
+        "value": "minStorageRent"
+      }
+    }
+  ],
+  "unaryOps": [
+    {
+      "name": "newBankErgoTreeHash",
+      "op": "Hash",
+      "from": "newBankErgoTreeBytes"
+    },
+    {
+      "to": "newBankErgoTree",
+      "from": "newBankAddress",
+      "op": "ToErgoTree"
+    },
+    {
+      "to": "newBankErgoTreeBytes",
+      "from": "newBankErgoTree",
+      "op": "ToCollByte"
+    }
+  ],
+  "fee": 2000000
+}
