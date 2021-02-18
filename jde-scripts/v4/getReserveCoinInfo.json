@@ -24,9 +24,9 @@
       ]
     },
     {
-      "name": "myAddress",
-      "type": "Address",
-      "value": "9hz1B19M44TNpmVe8MS4xvXyycehh5uP5aCfj4a6iAowj88hkd2"
+      "name":"coolingOffHeight",
+      "type":"Int",
+      "value":"430000"
     },
     {
       "name": "rcCircDelta",
@@ -54,14 +54,14 @@
       "value": "100"
     },
     {
-      "name": "minStorageRent",
-      "type": "Long",
-      "value": "10000000"
-    },
-    {
       "name": "rcDefaultPrice",
       "type": "Long",
       "value": "1000000"
+    },
+    {
+      "name": "defaultMaxReserveRatioPercent",
+      "type": "Long",
+      "value": "800"
     }
   ],
   "dataInputs": [
@@ -131,88 +131,6 @@
       }
     }
   ],
-  "outputs": [
-    {
-      "address": {
-        "value": "bankAddress"
-      },
-      "tokens": [
-        {
-          "index": 0,
-          "id": {
-            "value": "scToken"
-          },
-          "amount": {
-            "value": "scTokenIn"
-          }
-        },
-        {
-          "index": 1,
-          "id": {
-            "value": "rcToken"
-          },
-          "amount": {
-            "value": "rcTokenOut"
-          }
-        },
-        {
-          "index": 2,
-          "id": {
-            "value": "bankNFT"
-          },
-          "amount": {
-            "value": "1"
-          }
-        }
-      ],
-      "registers": [
-        {
-          "num": "R4",
-          "value": "scCircIn",
-          "type": "Long"
-        },
-        {
-          "num": "R5",
-          "value": "rcCircOut",
-          "type": "Long"
-        }
-      ],
-      "nanoErgs": {
-        "value": "bcReserveOut"
-      }
-    },
-    {
-      "address": {
-        "value": "myAddress"
-      },
-      "registers": [
-        {
-          "value": "rcCircDelta",
-          "num": "R4",
-          "type": "Long"
-        },
-        {
-          "value": "bcDeltaWithFee",
-          "num": "R5",
-          "type": "Long"
-        }
-      ],
-      "tokens": [
-        {
-          "index": 0,
-          "id": {
-            "value": "rcToken"
-          },
-          "amount": {
-            "value": "rcCircDelta"
-          }
-        }
-      ],
-      "nanoErgs": {
-        "value": "minStorageRent"
-      }
-    }
-  ],
   "unaryOps": [
     {
       "name": "fee * -1",
@@ -221,6 +139,36 @@
     }
   ],
   "branches": [
+    {
+      "name": "maxReserveRatioPercent",
+      "ifTrue": "defaultMaxReserveRatioPercent",
+      "ifFalse": "INF",
+      "condition": {
+        "first": "HEIGHT",
+        "op": "Lt",
+        "second": "coolingOffHeight"
+      }
+    },
+    {
+      "name": "reserveRatioPercentOut",
+      "ifTrue": "maxReserveRatioPercent",
+      "ifFalse": "bcReserveOut * 100 / bcReserveNeededIn",
+      "condition": {
+        "first": "bcReserveNeededIn",
+        "second": "0",
+        "op": "Eq"
+      }
+    },
+    {
+      "name": "reserveRatioPercentIn",
+      "ifTrue": "maxReserveRatioPercent",
+      "ifFalse": "bcReserveIn * 100 / bcReserveNeededIn",
+      "condition": {
+        "first": "bcReserveNeededIn",
+        "second": "0",
+        "op": "Eq"
+      }
+    },
     {
       "name": "equityRate",
       "ifTrue": "rcDefaultPrice",
@@ -254,6 +202,30 @@
 
   ],
   "binaryOps": [
+    {
+      "name": "bcReserveIn * 100 / bcReserveNeededIn",
+      "first": "bcReserveIn * 100",
+      "op": "Div",
+      "second": "bcReserveNeededIn"
+    },
+    {
+      "name": "bcReserveOut * 100 / bcReserveNeededIn",
+      "first": "bcReserveOut * 100",
+      "op": "Div",
+      "second": "bcReserveNeededIn"
+    },
+    {
+      "name": "bcReserveOut * 100",
+      "first": "bcReserveOut",
+      "op": "Mul",
+      "second": "100"
+    },
+    {
+      "name": "bcReserveIn * 100",
+      "first": "bcReserveIn",
+      "op": "Mul",
+      "second": "100"
+    },
     {
       "name": "rcTokenOut",
       "first": "rcTokenIn",
@@ -327,7 +299,6 @@
       "second": "bcDeltaWithFee"
     }
   ],
-  "fee": 2000000,
   "returns": [
     "scToken",
     "rcToken",
@@ -337,6 +308,8 @@
     "scCircIn",
     "rcCircIn",
     "bcReserveIn",
+    "reserveRatioPercentIn",
+    "reserveRatioPercentOut",
     "rcCircDelta",
     "bcDeltaWithFee",
     "rcNominalPrice",

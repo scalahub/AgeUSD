@@ -29,9 +29,9 @@
       "value": "9hz1B19M44TNpmVe8MS4xvXyycehh5uP5aCfj4a6iAowj88hkd2"
     },
     {
-      "name": "rcCircDelta",
+      "name": "scCircDelta",
       "type": "Long",
-      "value": "5"
+      "value": "10"
     },
     {
       "name": "0",
@@ -54,14 +54,14 @@
       "value": "100"
     },
     {
+      "name": "INF",
+      "type": "Long",
+      "value": "100000000000"
+    },
+    {
       "name": "minStorageRent",
       "type": "Long",
       "value": "10000000"
-    },
-    {
-      "name": "rcDefaultPrice",
-      "type": "Long",
-      "value": "1000000"
     }
   ],
   "dataInputs": [
@@ -90,7 +90,9 @@
             "name": "scToken"
           },
           "amount": {
-            "name": "scTokenIn"
+            "name": "scTokenIn",
+            "filter": "Gt",
+            "value": "scCircDelta"
           }
         },
         {
@@ -99,9 +101,7 @@
             "name": "rcToken"
           },
           "amount": {
-            "name": "rcTokenIn",
-            "filter": "Gt",
-            "value": "rcCircDelta"
+            "name": "rcTokenIn"
           }
         },
         {
@@ -128,7 +128,10 @@
       ],
       "nanoErgs": {
         "name": "bcReserveIn"
-      }
+      },
+      "options": [
+        "Strict"
+      ]
     }
   ],
   "outputs": [
@@ -143,7 +146,7 @@
             "value": "scToken"
           },
           "amount": {
-            "value": "scTokenIn"
+            "value": "scTokenOut"
           }
         },
         {
@@ -152,7 +155,7 @@
             "value": "rcToken"
           },
           "amount": {
-            "value": "rcTokenOut"
+            "value": "rcTokenIn"
           }
         },
         {
@@ -168,12 +171,12 @@
       "registers": [
         {
           "num": "R4",
-          "value": "scCircIn",
+          "value": "scCircOut",
           "type": "Long"
         },
         {
           "num": "R5",
-          "value": "rcCircOut",
+          "value": "rcCircIn",
           "type": "Long"
         }
       ],
@@ -187,7 +190,7 @@
       },
       "registers": [
         {
-          "value": "rcCircDelta",
+          "value": "scCircDelta",
           "num": "R4",
           "type": "Long"
         },
@@ -201,10 +204,10 @@
         {
           "index": 0,
           "id": {
-            "value": "rcToken"
+            "value": "scToken"
           },
           "amount": {
-            "value": "rcCircDelta"
+            "value": "scCircDelta"
           }
         }
       ],
@@ -222,21 +225,11 @@
   ],
   "branches": [
     {
-      "name": "equityRate",
-      "ifTrue": "rcDefaultPrice",
-      "ifFalse": "equityIn / rcCircIn",
+      "name": "liableRate",
+      "ifTrue": "INF",
+      "ifFalse": "liabilitiesIn / scCircIn",
       "condition": {
-        "first": "rcCircIn",
-        "second": "0",
-        "op": "Eq"
-      }
-    },
-    {
-      "name": "rcNominalPrice",
-      "ifTrue": "rcDefaultPrice",
-      "ifFalse": "equityRate",
-      "condition": {
-        "first": "equityIn",
+        "first": "scCircIn",
         "second": "0",
         "op": "Eq"
       }
@@ -251,20 +244,19 @@
         "op": "Lt"
       }
     }
-
   ],
   "binaryOps": [
     {
-      "name": "rcTokenOut",
-      "first": "rcTokenIn",
+      "name": "scTokenOut",
+      "first": "scTokenIn",
       "op": "Sub",
-      "second": "rcCircDelta"
+      "second": "scCircDelta"
     },
     {
-      "name": "rcCircOut",
-      "first": "rcCircIn",
+      "name": "scCircOut",
+      "first": "scCircIn",
       "op": "Add",
-      "second": "rcCircDelta"
+      "second": "scCircDelta"
     },
     {
       "name": "rate",
@@ -285,22 +277,22 @@
       "second": "bcReserveNeededIn"
     },
     {
-      "name": "equityIn",
-      "first": "bcReserveIn",
-      "op": "Sub",
-      "second": "liabilitiesIn"
+      "name": "liabilitiesIn / scCircIn",
+      "first": "liabilitiesIn",
+      "op": "Div",
+      "second": "scCircIn"
     },
     {
-      "name": "equityIn / rcCircIn",
-      "first": "equityIn",
-      "op": "Div",
-      "second": "rcCircIn"
+      "name": "scNominalPrice",
+      "first": "rate",
+      "op": "Min",
+      "second": "liableRate"
     },
     {
       "name": "bcDelta",
-      "first": "rcNominalPrice",
+      "first": "scNominalPrice",
       "op": "Mul",
-      "second": "rcCircDelta"
+      "second": "scCircDelta"
     },
     {
       "name": "bcDelta * feePercent",
@@ -337,9 +329,9 @@
     "scCircIn",
     "rcCircIn",
     "bcReserveIn",
-    "rcCircDelta",
+    "scCircDelta",
     "bcDeltaWithFee",
-    "rcNominalPrice",
+    "scNominalPrice",
     "rateUSD",
     "rate"
   ]

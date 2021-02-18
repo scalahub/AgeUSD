@@ -24,14 +24,14 @@
       ]
     },
     {
-      "name": "myAddress",
-      "type": "Address",
-      "value": "9hz1B19M44TNpmVe8MS4xvXyycehh5uP5aCfj4a6iAowj88hkd2"
+      "name":"coolingOffHeight",
+      "type":"Int",
+      "value":"430000"
     },
     {
-      "name": "rcCircDelta",
+      "name": "scCircDelta",
       "type": "Long",
-      "value": "5"
+      "value": "10"
     },
     {
       "name": "0",
@@ -54,14 +54,14 @@
       "value": "100"
     },
     {
-      "name": "minStorageRent",
+      "name": "INF",
       "type": "Long",
-      "value": "10000000"
+      "value": "100000000000"
     },
     {
-      "name": "rcDefaultPrice",
+      "name": "defaultMaxReserveRatioPercent",
       "type": "Long",
-      "value": "1000000"
+      "value": "800"
     }
   ],
   "dataInputs": [
@@ -90,7 +90,9 @@
             "name": "scToken"
           },
           "amount": {
-            "name": "scTokenIn"
+            "name": "scTokenIn",
+            "filter": "Gt",
+            "value": "scCircDelta"
           }
         },
         {
@@ -99,9 +101,7 @@
             "name": "rcToken"
           },
           "amount": {
-            "name": "rcTokenIn",
-            "filter": "Gt",
-            "value": "rcCircDelta"
+            "name": "rcTokenIn"
           }
         },
         {
@@ -131,88 +131,6 @@
       }
     }
   ],
-  "outputs": [
-    {
-      "address": {
-        "value": "bankAddress"
-      },
-      "tokens": [
-        {
-          "index": 0,
-          "id": {
-            "value": "scToken"
-          },
-          "amount": {
-            "value": "scTokenIn"
-          }
-        },
-        {
-          "index": 1,
-          "id": {
-            "value": "rcToken"
-          },
-          "amount": {
-            "value": "rcTokenOut"
-          }
-        },
-        {
-          "index": 2,
-          "id": {
-            "value": "bankNFT"
-          },
-          "amount": {
-            "value": "1"
-          }
-        }
-      ],
-      "registers": [
-        {
-          "num": "R4",
-          "value": "scCircIn",
-          "type": "Long"
-        },
-        {
-          "num": "R5",
-          "value": "rcCircOut",
-          "type": "Long"
-        }
-      ],
-      "nanoErgs": {
-        "value": "bcReserveOut"
-      }
-    },
-    {
-      "address": {
-        "value": "myAddress"
-      },
-      "registers": [
-        {
-          "value": "rcCircDelta",
-          "num": "R4",
-          "type": "Long"
-        },
-        {
-          "value": "bcDeltaWithFee",
-          "num": "R5",
-          "type": "Long"
-        }
-      ],
-      "tokens": [
-        {
-          "index": 0,
-          "id": {
-            "value": "rcToken"
-          },
-          "amount": {
-            "value": "rcCircDelta"
-          }
-        }
-      ],
-      "nanoErgs": {
-        "value": "minStorageRent"
-      }
-    }
-  ],
   "unaryOps": [
     {
       "name": "fee * -1",
@@ -222,21 +140,41 @@
   ],
   "branches": [
     {
-      "name": "equityRate",
-      "ifTrue": "rcDefaultPrice",
-      "ifFalse": "equityIn / rcCircIn",
+      "name": "maxReserveRatioPercent",
+      "ifTrue": "defaultMaxReserveRatioPercent",
+      "ifFalse": "INF",
       "condition": {
-        "first": "rcCircIn",
+        "first": "HEIGHT",
+        "op": "Lt",
+        "second": "coolingOffHeight"
+      }
+    },
+    {
+      "name": "reserveRatioPercentOut",
+      "ifTrue": "maxReserveRatioPercent",
+      "ifFalse": "bcReserveOut * 100 / bcReserveNeededOut",
+      "condition": {
+        "first": "bcReserveNeededOut",
         "second": "0",
         "op": "Eq"
       }
     },
     {
-      "name": "rcNominalPrice",
-      "ifTrue": "rcDefaultPrice",
-      "ifFalse": "equityRate",
+      "name": "reserveRatioPercentIn",
+      "ifTrue": "maxReserveRatioPercent",
+      "ifFalse": "bcReserveIn * 100 / bcReserveNeededIn",
       "condition": {
-        "first": "equityIn",
+        "first": "bcReserveNeededIn",
+        "second": "0",
+        "op": "Eq"
+      }
+    },
+    {
+      "name": "liableRate",
+      "ifTrue": "INF",
+      "ifFalse": "liabilitiesIn / scCircIn",
+      "condition": {
+        "first": "scCircIn",
         "second": "0",
         "op": "Eq"
       }
@@ -251,20 +189,49 @@
         "op": "Lt"
       }
     }
-
   ],
   "binaryOps": [
     {
-      "name": "rcTokenOut",
-      "first": "rcTokenIn",
-      "op": "Sub",
-      "second": "rcCircDelta"
+      "name": "bcReserveIn * 100 / bcReserveNeededIn",
+      "first": "bcReserveIn * 100",
+      "op": "Div",
+      "second": "bcReserveNeededIn"
     },
     {
-      "name": "rcCircOut",
-      "first": "rcCircIn",
+      "name": "bcReserveOut * 100 / bcReserveNeededOut",
+      "first": "bcReserveOut * 100",
+      "op": "Div",
+      "second": "bcReserveNeededOut"
+    },
+    {
+      "name": "bcReserveOut * 100",
+      "first": "bcReserveOut",
+      "op": "Mul",
+      "second": "100"
+    },
+    {
+      "name": "bcReserveIn * 100",
+      "first": "bcReserveIn",
+      "op": "Mul",
+      "second": "100"
+    },
+    {
+      "name": "bcReserveNeededOut",
+      "first": "rate",
+      "op": "Mul",
+      "second": "scCircOut"
+    },
+    {
+      "name": "scTokenOut",
+      "first": "scTokenIn",
+      "op": "Sub",
+      "second": "scCircDelta"
+    },
+    {
+      "name": "scCircOut",
+      "first": "scCircIn",
       "op": "Add",
-      "second": "rcCircDelta"
+      "second": "scCircDelta"
     },
     {
       "name": "rate",
@@ -285,22 +252,22 @@
       "second": "bcReserveNeededIn"
     },
     {
-      "name": "equityIn",
-      "first": "bcReserveIn",
-      "op": "Sub",
-      "second": "liabilitiesIn"
+      "name": "liabilitiesIn / scCircIn",
+      "first": "liabilitiesIn",
+      "op": "Div",
+      "second": "scCircIn"
     },
     {
-      "name": "equityIn / rcCircIn",
-      "first": "equityIn",
-      "op": "Div",
-      "second": "rcCircIn"
+      "name": "scNominalPrice",
+      "first": "rate",
+      "op": "Min",
+      "second": "liableRate"
     },
     {
       "name": "bcDelta",
-      "first": "rcNominalPrice",
+      "first": "scNominalPrice",
       "op": "Mul",
-      "second": "rcCircDelta"
+      "second": "scCircDelta"
     },
     {
       "name": "bcDelta * feePercent",
@@ -327,7 +294,6 @@
       "second": "bcDeltaWithFee"
     }
   ],
-  "fee": 2000000,
   "returns": [
     "scToken",
     "rcToken",
@@ -337,9 +303,11 @@
     "scCircIn",
     "rcCircIn",
     "bcReserveIn",
-    "rcCircDelta",
+    "reserveRatioPercentIn",
+    "reserveRatioPercentOut",
+    "scCircDelta",
     "bcDeltaWithFee",
-    "rcNominalPrice",
+    "scNominalPrice",
     "rateUSD",
     "rate"
   ]
