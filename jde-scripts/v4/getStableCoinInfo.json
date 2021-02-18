@@ -306,6 +306,7 @@
     "reserveRatioPercentIn",
     "reserveRatioPercentOut",
     "scCircDelta",
+    "bcDelta",
     "bcDeltaWithFee",
     "scNominalPrice",
     "rateUSD",

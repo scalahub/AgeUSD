@@ -24,14 +24,14 @@
       ]
     },
     {
-      "name":"coolingOffHeight",
-      "type":"Int",
-      "value":"430000"
+      "name": "myAddress",
+      "type": "Address",
+      "value": "9hz1B19M44TNpmVe8MS4xvXyycehh5uP5aCfj4a6iAowj88hkd2"
     },
     {
       "name": "rcCircDelta",
       "type": "Long",
-      "value": "5"
+      "value": "-5"
     },
     {
       "name": "0",
@@ -54,14 +54,14 @@
       "value": "100"
     },
     {
+      "name": "minStorageRent",
+      "type": "Long",
+      "value": "10000000"
+    },
+    {
       "name": "rcDefaultPrice",
       "type": "Long",
       "value": "1000000"
-    },
-    {
-      "name": "defaultMaxReserveRatioPercent",
-      "type": "Long",
-      "value": "800"
     }
   ],
   "dataInputs": [
@@ -99,9 +99,7 @@
             "name": "rcToken"
           },
           "amount": {
-            "name": "rcTokenIn",
-            "filter": "Gt",
-            "value": "rcCircDelta"
+            "name": "rcTokenIn"
           }
         },
         {
@@ -129,6 +127,93 @@
       "nanoErgs": {
         "name": "bcReserveIn"
       }
+    },
+    {
+      "address": {
+        "value": "myAddress"
+      },
+      "tokens": [
+        {
+          "id": {
+            "value": "rcToken"
+          },
+          "amount": {
+            "value": "rcCircDeltaAbs",
+            "filter": "Ge"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "address": {
+        "value": "bankAddress"
+      },
+      "tokens": [
+        {
+          "index": 0,
+          "id": {
+            "value": "scToken"
+          },
+          "amount": {
+            "value": "scTokenIn"
+          }
+        },
+        {
+          "index": 1,
+          "id": {
+            "value": "rcToken"
+          },
+          "amount": {
+            "value": "rcTokenOut"
+          }
+        },
+        {
+          "index": 2,
+          "id": {
+            "value": "bankNFT"
+          },
+          "amount": {
+            "value": "1"
+          }
+        }
+      ],
+      "registers": [
+        {
+          "num": "R4",
+          "value": "scCircIn",
+          "type": "Long"
+        },
+        {
+          "num": "R5",
+          "value": "rcCircOut",
+          "type": "Long"
+        }
+      ],
+      "nanoErgs": {
+        "value": "bcReserveOut"
+      }
+    },
+    {
+      "address": {
+        "value": "myAddress"
+      },
+      "registers": [
+        {
+          "value": "rcCircDelta",
+          "num": "R4",
+          "type": "Long"
+        },
+        {
+          "value": "bcDeltaWithFee",
+          "num": "R5",
+          "type": "Long"
+        }
+      ],
+      "nanoErgs": {
+        "value": "bcDeltaWithFeeAbs"
+      }
     }
   ],
   "unaryOps": [
@@ -136,39 +221,19 @@
       "name": "fee * -1",
       "op": "Neg",
       "from": "fee"
+    },
+    {
+      "name": "rcCircDeltaAbs",
+      "op": "Abs",
+      "from": "rcCircDelta"
+    },
+    {
+      "name": "bcDeltaWithFeeAbs",
+      "op": "Abs",
+      "from": "bcDeltaWithFee"
     }
   ],
   "branches": [
-    {
-      "name": "maxReserveRatioPercent",
-      "ifTrue": "defaultMaxReserveRatioPercent",
-      "ifFalse": "INF",
-      "condition": {
-        "first": "HEIGHT",
-        "op": "Lt",
-        "second": "coolingOffHeight"
-      }
-    },
-    {
-      "name": "reserveRatioPercentOut",
-      "ifTrue": "maxReserveRatioPercent",
-      "ifFalse": "bcReserveOut * 100 / bcReserveNeededIn",
-      "condition": {
-        "first": "bcReserveNeededIn",
-        "second": "0",
-        "op": "Eq"
-      }
-    },
-    {
-      "name": "reserveRatioPercentIn",
-      "ifTrue": "maxReserveRatioPercent",
-      "ifFalse": "bcReserveIn * 100 / bcReserveNeededIn",
-      "condition": {
-        "first": "bcReserveNeededIn",
-        "second": "0",
-        "op": "Eq"
-      }
-    },
     {
       "name": "equityRate",
       "ifTrue": "rcDefaultPrice",
@@ -199,33 +264,8 @@
         "op": "Lt"
       }
     }
-
   ],
   "binaryOps": [
-    {
-      "name": "bcReserveIn * 100 / bcReserveNeededIn",
-      "first": "bcReserveIn * 100",
-      "op": "Div",
-      "second": "bcReserveNeededIn"
-    },
-    {
-      "name": "bcReserveOut * 100 / bcReserveNeededIn",
-      "first": "bcReserveOut * 100",
-      "op": "Div",
-      "second": "bcReserveNeededIn"
-    },
-    {
-      "name": "bcReserveOut * 100",
-      "first": "bcReserveOut",
-      "op": "Mul",
-      "second": "100"
-    },
-    {
-      "name": "bcReserveIn * 100",
-      "first": "bcReserveIn",
-      "op": "Mul",
-      "second": "100"
-    },
     {
       "name": "rcTokenOut",
       "first": "rcTokenIn",
@@ -299,6 +339,7 @@
       "second": "bcDeltaWithFee"
     }
   ],
+  "fee": 2000000,
   "returns": [
     "scToken",
     "rcToken",
@@ -308,8 +349,6 @@
     "scCircIn",
     "rcCircIn",
     "bcReserveIn",
-    "reserveRatioPercentIn",
-    "reserveRatioPercentOut",
     "rcCircDelta",
     "bcDelta",
     "bcDeltaWithFee",

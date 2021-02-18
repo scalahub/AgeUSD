@@ -338,6 +338,7 @@
     "rcCircIn",
     "bcReserveIn",
     "rcCircDelta",
+    "bcDelta",
     "bcDeltaWithFee",
     "rcNominalPrice",
     "rateUSD",
