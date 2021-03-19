@@ -135,7 +135,7 @@ private[v5] object Contracts {
        |    validDataInput
        |  } else false
        |
-       |  sigmaProp(isExchange || INPUTS(0).tokens(0)._1 == updateNFT && CONTEXT.dataInputs.size == 0)
+       |  sigmaProp(isExchange || INPUTS(0).tokens(0)._1 == updateNFT)
        |}
        |""".stripMargin
 
