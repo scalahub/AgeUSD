@@ -3,10 +3,10 @@ package stablecoin.v5
 private[v5] object Contracts {
   val oraclePoolNFT = "0fb1eca4646950743bc5a8c341c16871a0ad9b4077e3b276bf93855d51a042d1"
 
-  val updateNFT = "77d14a018507949d1a88a631f76663e8e5101f57305dd5ebd319a41028d80456" // quantity 1
+  val updateNFT = "431a1765af84cd4c445ea169f7b08e78d85d83ae55595b6740def6cfe30b2a5d" // quantity 1
   val ballotTokenId = "dd26438230986cfe7305ad958451b69e55ad5ac37c8a355bfb08d810edd7a20f" // quantity 1000
 
-  val bankNFT = "7bd873b8a886daa7a8bfacdad11d36aeee36c248aaf5779bcd8d41a13e4c1604" // quantity 1
+  val bankNFT = "008a94c8c76bbaa1f0a346697d1794eb31d94b37e5533af9cc0b6932bf159339" // quantity 1
   val scToken = "a908bf2be7e199014b45e421dc4adb846d8de95e37da87c7f97ac6fb8e863fa2" // quantity 10000000000000
   val rcToken = "b240daba6b5f9f9b6d4e6d7fc8b7c0423f1dfa28a883ec626a18b69be6c7590e" // quantity 10000000000000
 
@@ -139,7 +139,7 @@ private[v5] object Contracts {
        |}
        |""".stripMargin
 
-  val minVotes: Int = 5
+  val minVotes: Int = 2
 
   val ballotScript =
     s"""{ // This box (ballot box):

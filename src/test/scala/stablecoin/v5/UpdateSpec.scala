@@ -3,15 +3,12 @@ package stablecoin.v5
 import kiosk.ErgoUtil
 import kiosk.encoding.ScalaErgoConverters
 import kiosk.encoding.ScalaErgoConverters.stringToGroupElement
-import kiosk.script.ScriptUtil._
-import kiosk.ergo._
 import kiosk.ergo._
 import kiosk.tx.TxUtil
 import org.ergoplatform.appkit._
 import org.scalatest.{Matchers, PropSpec}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import scorex.crypto.hash.Blake2b256
-import stablecoin.v5.Contracts._
 
 class UpdateSpec extends PropSpec with Matchers with ScalaCheckDrivenPropertyChecks with HttpClientTesting {
   /*
@@ -215,6 +212,20 @@ class UpdateSpec extends PropSpec with Matchers with ScalaCheckDrivenPropertyChe
         )
       } should have message "Script reduced to false"
 
+      // should fail for invalid output ballot boxes (ballot box ordering changed in outputs)
+      the[Exception] thrownBy {
+        TxUtil.createTx(
+          inputBoxes = Array(updateBoxIn, bankBoxIn, ballot0, ballot1, ballot2, dummyFundingBox),
+          dataInputs = Array(),
+          boxesToCreate = Array(updateBoxOut, bankBoxOut, ballot0BoxToCreate, ballot2BoxToCreate, ballot1BoxToCreate),
+          fee,
+          changeAddress,
+          proveDlogSecrets = Array[String](),
+          Array[DhtData](),
+          false
+        )
+      } should have message "Script reduced to false"
+
       // should fail for invalid input update box Id
       val invalidUpdateBoxIn = updateOutBox.convertToInputWith(dummyTxId, 1) // different outputIndex
 
@@ -234,9 +245,9 @@ class UpdateSpec extends PropSpec with Matchers with ScalaCheckDrivenPropertyChe
       // Should fail when having insufficient votes (4)
       the[Exception] thrownBy {
         TxUtil.createTx(
-          inputBoxes = Array(updateBoxIn, bankBoxIn, ballot0, ballot1, dummyFundingBox),
+          inputBoxes = Array(updateBoxIn, bankBoxIn, ballot2, dummyFundingBox),
           dataInputs = Array(),
-          boxesToCreate = Array(updateBoxOut, bankBoxOut, ballot0BoxToCreate, ballot1BoxToCreate),
+          boxesToCreate = Array(updateBoxOut, bankBoxOut, ballot2BoxToCreate),
           fee,
           changeAddress,
           proveDlogSecrets = Array[String](),
